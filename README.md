@@ -4,9 +4,9 @@
 # Usefull Links
 
 * Asterisk: 
-⋅⋅1. http://www.asterisk.org/
+  1. http://www.asterisk.org/
 * Git
-⋅⋅1. http://rogerdudler.github.io/git-guide/
+  1. http://rogerdudler.github.io/git-guide/
 * Markdown
-⋅⋅1. https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+  1. https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
