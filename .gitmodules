@@ -1,0 +1,3 @@
+[submodule "Asterisk-Google-Speech-Recognition"]
+	path = Asterisk-Google-Speech-Recognition
+	url = https://github.com/ederwander/Asterisk-Google-Speech-Recognition.git
