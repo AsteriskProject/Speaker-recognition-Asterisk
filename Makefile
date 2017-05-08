@@ -1,12 +1,13 @@
 CC=gcc
 EXEC=binarytest.out
-
+NAMEPROGPYTHON=speechsender.py
 all: $(EXEC)
 
 binarytest.out: simpleprogram.c
 		$(CC) $< -o $(EXEC) 
 copy:
-	cp "/home/roothome/Speaker-recognition-Asterisk/speechsender.py" "/var/lib/asterisk/agi-bin"
+	chmod a+x $(NAMEPROGPYTHON) 
+	cp "/home/roothome/Speaker-recognition-Asterisk/$(NAMEPROGPYTHON)" "/var/lib/asterisk/agi-bin"
 clean:
 		rm $(EXEC)
 
