@@ -1,10 +1,10 @@
 CC=gcc
-EXEC=binarytest
+EXEC=binarytest.out
 
 all: $(EXEC)
 
 binarytest: simpleprogram.c
-		$(CC) $< -o binarytest 
+		$(CC) $< -o $(EXEC) 
 
 clean:
 		rm $(EXEC)
