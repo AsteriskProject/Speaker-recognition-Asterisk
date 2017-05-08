@@ -117,11 +117,12 @@ def SendSpeech(File):
         if result:
                 #test=result.split('},')
                 #result=test[len(test)-1].replace('"', '')
-                #sys.stdout.write('SET VARIABLE GoogleUtterance "%s"\n'% str(result))
+                #To keep the same dialplan example application i let the same thing
+                sys.stdout.write('SET VARIABLE GoogleUtterance "%s"\n'% str(result))
                 sys.stdout.write('GREAT SUCCESS : "%s"\n'% str(result))
                 sys.stdout.flush()
-                #sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% str(result))
-                #sys.stdout.flush()
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% str(result))
+                sys.stdout.flush()
 
 def Filter(samps):
         FC = 0.05/(0.5*RawRate)
