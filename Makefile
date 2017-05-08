@@ -3,7 +3,7 @@ EXEC=binarytest.out
 
 all: $(EXEC)
 
-binarytest: simpleprogram.c
+binarytest.out: simpleprogram.c
 		$(CC) $< -o $(EXEC) 
 
 clean:
