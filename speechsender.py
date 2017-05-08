@@ -106,7 +106,7 @@ def SendSpeech(File):
         #req = urllib2.Request(url, flac, header)
         #data = urllib2.urlopen(req)
         #find= re.findall('{"transcript":(.*)},', data.read())
-        args = ("/home/roothome/binarytest.o","Salut Fernando")
+        args = ("/home/roothome/Speaker-recognition-Asterisk/binarytest.out","Salut Fernando")
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
                 result = popen.stdout.read()
