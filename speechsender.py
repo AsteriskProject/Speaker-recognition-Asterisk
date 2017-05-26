@@ -32,6 +32,8 @@ Lang="en-US"
 #NOw for google speech V2
 url='https://www.google.com/speech-api/v2/recognize?output=json&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&lang='+Lang
 
+#Places where to find binaries
+registering_bin="/home/roothome/Speaker-recognition-Asterisk/binarytest.out"
 
 silence=True
 env = {}
@@ -106,7 +108,7 @@ def SendSpeech(File):
         #req = urllib2.Request(url, flac, header)
         #data = urllib2.urlopen(req)
         #find= re.findall('{"transcript":(.*)},', data.read())
-        args = ("/home/roothome/Speaker-recognition-Asterisk/binarytest.out","Salut Fernando")
+        args = (registering_bin,"Salut Fernando")
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
                 result = popen.stdout.read()
@@ -118,8 +120,8 @@ def SendSpeech(File):
                 #test=result.split('},')
                 #result=test[len(test)-1].replace('"', '')
                 #To keep the same dialplan example application i let the same thing
-                sys.stdout.write('SET VARIABLE GoogleUtterance "%s"\n'% str(result))
-                sys.stdout.write('GREAT SUCCESS : "%s"\n'% str(result))
+                sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% str(result))
+                sys.stdout.write('You have been assigned number : "%s"\n'% str(result))
                 sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% str(result))
                 sys.stdout.flush()
