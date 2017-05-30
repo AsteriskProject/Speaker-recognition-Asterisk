@@ -21,6 +21,10 @@ import re
 import os
 import subprocess
 
+#TODO
+#sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
+#path="/res/"
+#os.rename(path+"model",path+"model"+ str(sys.argv[1]))
 
 #For Portuguese Brazilian Speech Recognizer!
 #Lang="pt-BR"
