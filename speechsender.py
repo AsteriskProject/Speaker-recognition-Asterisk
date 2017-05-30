@@ -21,11 +21,6 @@ import re
 import os
 import subprocess
 
-#TODO
-#sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
-#path="/res/"
-#os.rename(path+"model",path+"model"+ str(sys.argv[1]))
-
 #For Portuguese Brazilian Speech Recognizer!
 #Lang="pt-BR"
 
@@ -37,7 +32,27 @@ Lang="en-US"
 url='https://www.google.com/speech-api/v2/recognize?output=json&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&lang='+Lang
 
 #Places where to find binaries
-registering_bin="/home/roothome/Speaker-recognition-Asterisk/binarytest.out"
+binaries_path="/home/roothome/Speaker-recognition-Asterisk"
+registering_bin=binaries_path+"/binarytest.out"
+checking_bin=binaries_path+"/binarytest.out"
+
+#register or check modes
+#they are given as input
+mode = sys.argv[1]
+
+#Identifier extension will be added like a caller id
+caller_id = sys.argv[2]
+
+#General path
+path="/res"
+models=path+"/models"
+default_name_model="model"
+
+#TODO
+#sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
+#path="/res/"
+#os.rename(path+"model",path+"model"+ str(sys.argv[1]))
+
 
 silence=True
 env = {}
@@ -105,30 +120,49 @@ for key in env.keys():
 
 
 def SendSpeech(File):
-        result=''
-        flac=open(File,"rb").read()
-        os.remove(File)
-        #header = {'Content-Type' : 'audio/x-flac; rate=8000'}
-        #req = urllib2.Request(url, flac, header)
-        #data = urllib2.urlopen(req)
-        #find= re.findall('{"transcript":(.*)},', data.read())
+    if mode == "register":
+        RegisterUser(File)
+    else:
+        CheckVoiceID(File)
+                
+
+def RegisterUser(File):
+        #to test
         args = (registering_bin,"Salut Fernando")
+        #flac=open(File,"rb").read()
+        #os.remove(File)
+        #real command: args= (registering_bin, File)
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
-                result = popen.stdout.read()
-                #result = find[0].replace('{"transcript":', '')
+                result = popen.stdout.read()# to wait that the analysis is complete
         except:
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
                 sys.stdout.flush()
         if result:
-                #test=result.split('},')
-                #result=test[len(test)-1].replace('"', '')
-                #To keep the same dialplan example application i let the same thing
-                sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% str(result))
-                sys.stdout.write('You have been assigned number : "%s"\n'% str(result))
+                #TODO change path model in function of the teacher binary
+                os.rename(binaries_path,models+"/"+caller_id)
+                sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
+                sys.stdout.write('You have been assigned number : "%s"\n'% caller_id)
                 sys.stdout.flush()
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% str(result))
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
                 sys.stdout.flush()
+
+def CheckVoiceID(File):
+        args = (checking_bin,"1")
+        #real command: args= (registering_bin, File, models + "/" + caller_id)
+        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+        try:
+                result = popen.stdout.read()# to wait that the analysis is complete
+        except:
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
+                sys.stdout.flush()
+        if str(result) == "1": 
+                sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
+                sys.stdout.flush()
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
+                sys.stdout.flush()
+
+
 
 def Filter(samps):
         FC = 0.05/(0.5*RawRate)
