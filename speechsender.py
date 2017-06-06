@@ -139,18 +139,18 @@ def RegisterUser(File):
 
 def CheckVoiceID(File):
         args = (checking_bin,"1")
-        #real command: args= (registering_bin, File, models + "/" + caller_id)
+        #real command: args= (checking_bin, File, models + "/" + caller_id)
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
-                result = popen.stdout.read()# to wait that the analysis is complete
+            result = popen.stdout.read()# to wait that the analysis is complete
         except:
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
-                sys.stdout.flush()
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
+            sys.stdout.flush()
         if str(result) == "1": 
-                sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
-                sys.stdout.flush()
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
-                sys.stdout.flush()
+            sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
+            sys.stdout.flush()
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
+            sys.stdout.flush()
 
 
 
