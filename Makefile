@@ -11,6 +11,6 @@ copy:
 dialplan:
 	cp "./extensions_custom.conf" "/etc/asterisk/"
 clean:
-		rm $(EXEC)
+	rm $(EXEC)
 
 
