@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import warnings
 warnings.simplefilter("ignore", DeprecationWarning)
 warnings.simplefilter("ignore", UserWarning)
@@ -141,12 +140,13 @@ def RegisterUser(File):
                 default_model_path=binaries_path+default_name_model
                 renamed_model_id=models+"/"+caller_id
                 
-                sys.stdout.write("%s"% default_model_path +"%s" % renamed_model_id+ "\n")
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "%s"% default_model_path +"%s" % renamed_model_id+ "\n")
                 sys.stdout.flush()
 
                 os.rename(default_model_path,renamed_model_id)
                 
                 sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
+                sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
                 sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
