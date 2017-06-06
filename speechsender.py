@@ -146,8 +146,8 @@ def RegisterUser(File):
 
                 os.rename(default_model_path,renamed_model_id)
                 
-                sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
-                sys.stdout.flush()
+                #sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
+                #sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
                 sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
