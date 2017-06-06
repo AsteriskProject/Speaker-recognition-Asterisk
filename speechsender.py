@@ -110,9 +110,9 @@ for key in env.keys():
 
 
 def SendSpeech(File):
-    sys.stdout.write("Entering our send speech function" + "\n")
+    sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "entering sendSpeech ..." + "\" " + "\n")
     sys.stdout.flush()
-    sys.stdout.write("Mode is : %s"% mode + "\n")
+    sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Mode is : %s"% mode + "callerid is : %s"% caller_id + "\n")
     sys.stdout.flush()
     if mode == "register":
         RegisterUser(File)
@@ -121,7 +121,7 @@ def SendSpeech(File):
                 
 
 def RegisterUser(File):
-        sys.stdout.write("Entering our registering function " + "\n")
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our registering function " + "\n")
         sys.stdout.flush()
         #to test
         args = (registering_bin,"Salut Fernando")
@@ -135,7 +135,7 @@ def RegisterUser(File):
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
                 sys.stdout.flush()
         if result:
-                sys.stdout.write("Entering our result part in registering function " + "\n")
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
                 sys.stdout.flush()
                 #TODO change path model in function of the teacher binary
                 default_model_path=binaries_path+default_name_model
@@ -147,7 +147,7 @@ def RegisterUser(File):
                 os.rename(default_model_path,renamed_model_id)
                 
                 sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
-                sys.stdout.write('You have been assigned number : "%s"\n'% caller_id)
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
                 sys.stdout.flush()
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
                 sys.stdout.flush()
@@ -299,7 +299,7 @@ afile =  Sndfile(FileNameTmp, 'w', fmt, nchannels, RawRate)
 #writing in the file
 afile.write_frames(array)
 
-sys.stdout.write("Before entering our send speech function" + "\n")
+sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Before entering sendSpeech ..." + "\" " + "\n")
 sys.stdout.flush()
 SendSpeech(FileNameTmp)
 
