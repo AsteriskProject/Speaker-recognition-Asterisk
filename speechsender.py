@@ -155,7 +155,8 @@ def RegisterUser(File):
 
 def CheckVoiceID(File):
         args = (checking_bin,"1")
-        #real command: args= (checking_bin, File, models + "/" + caller_id)
+        model_id=models+"/"+caller_id
+        #real command: args= (checking_bin, File, model_id)
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
             result = popen.stdout.read()# to wait that the analysis is complete
