@@ -1,4 +1,4 @@
--#!/usr/bin/python 
+#!/usr/bin/python
 import warnings
 warnings.simplefilter("ignore", DeprecationWarning)
 warnings.simplefilter("ignore", UserWarning)
@@ -36,7 +36,7 @@ caller_id = sys.argv[2]
 #General path
 path="/res"
 models=path+"/models"
-default_name_model="model"
+default_name_model="/model"
 
 #TODO
 #sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
