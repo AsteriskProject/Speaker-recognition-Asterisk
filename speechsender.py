@@ -110,6 +110,10 @@ for key in env.keys():
 
 
 def SendSpeech(File):
+    sys.stdout.write("Entering our send speech function" + "\n")
+    sys.stdout.flush()
+    sys.stdout.write("Mode is : %s"% mode + "\n")
+    sys.stdout.flush()
     if mode == "register":
         RegisterUser(File)
     else:
@@ -295,5 +299,7 @@ afile =  Sndfile(FileNameTmp, 'w', fmt, nchannels, RawRate)
 #writing in the file
 afile.write_frames(array)
 
+sys.stdout.write("Before entering our send speech function" + "\n")
+sys.stdout.flush()
 SendSpeech(FileNameTmp)
 
