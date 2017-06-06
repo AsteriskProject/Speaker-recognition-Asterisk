@@ -141,7 +141,7 @@ def RegisterUser(File):
                 default_model_path=binaries_path+default_name_model
                 renamed_model_id=models+"/"+caller_id
                 
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "%s"% default_model_path +"%s" % renamed_model_id+ "\n")
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "% default_model_path +"Renamed model path: %s " % renamed_model_id+ "\n")
                 sys.stdout.flush()
 
                 os.rename(default_model_path,renamed_model_id)
