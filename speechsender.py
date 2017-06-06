@@ -129,8 +129,17 @@ def RegisterUser(File):
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
                 sys.stdout.flush()
         if result:
+                sys.stdout.write("Entering our registering function " + "\n")
+                sys.stdout.flush()
                 #TODO change path model in function of the teacher binary
-                os.rename(binaries_path,models+"/"+caller_id)
+                default_model_path=binaries_path+default_name_model
+                renamed_model_id=models+"/"+caller_id
+                
+                sys.stdout.write("%s"% default_model_path +"%s" % renamed_model_id+ "\n")
+                sys.stdout.flush()
+
+                os.rename(default_model_path,renamed_model_id)
+                
                 sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
                 sys.stdout.write('You have been assigned number : "%s"\n'% caller_id)
                 sys.stdout.flush()
