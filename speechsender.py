@@ -1,12 +1,4 @@
 #!/usr/bin/python
-#Based on the version of Eng Eder de Souza http://ederwander.wordpress.com/2012/01/16/google-speech-python-asterisk/
-#date 01/04/2017
-# This program is free software, distributed under the terms of
-# the GNU General Public License Version 2. See the COPYING file
-# at the top of the source tree.
-#
-#Revision 0.1
-
 import warnings
 warnings.simplefilter("ignore", DeprecationWarning)
 warnings.simplefilter("ignore", UserWarning)
@@ -21,8 +13,6 @@ import re
 import os
 import subprocess
 
-#For Portuguese Brazilian Speech Recognizer!
-#Lang="pt-BR"
 
 #For for English Speech Recognizer
 Lang="en-US"
