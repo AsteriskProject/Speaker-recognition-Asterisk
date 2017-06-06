@@ -117,6 +117,8 @@ def SendSpeech(File):
                 
 
 def RegisterUser(File):
+        sys.stdout.write("Entering our registering function " + "\n")
+        sys.stdout.flush()
         #to test
         args = (registering_bin,"Salut Fernando")
         #flac=open(File,"rb").read()
@@ -129,7 +131,7 @@ def RegisterUser(File):
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
                 sys.stdout.flush()
         if result:
-                sys.stdout.write("Entering our registering function " + "\n")
+                sys.stdout.write("Entering our result part in registering function " + "\n")
                 sys.stdout.flush()
                 #TODO change path model in function of the teacher binary
                 default_model_path=binaries_path+default_name_model
@@ -294,3 +296,4 @@ afile =  Sndfile(FileNameTmp, 'w', fmt, nchannels, RawRate)
 afile.write_frames(array)
 
 SendSpeech(FileNameTmp)
+
