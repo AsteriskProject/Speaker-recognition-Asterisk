@@ -2,5 +2,6 @@ Welcom to Eurecom Telephone System.
 If you are a new user please press one.
 Otherwise to login and contact someone please press 2.
 
-You are logged in now press the identifier of the person you can call.
+You are logged in now press the identifier of the person you want to call
+
  

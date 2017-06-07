@@ -37,6 +37,9 @@ caller_id = sys.argv[2]
 path="/res"
 models=path+"/models"
 default_name_model="/model"
+default_model_path=binaries_path+default_name_model
+renamed_model_id=models+"/"+caller_id
+
 
 #TODO
 #sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
@@ -138,8 +141,7 @@ def RegisterUser(File):
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
                 sys.stdout.flush()
                 #TODO change path model in function of the teacher binary
-                default_model_path=binaries_path+default_name_model
-                renamed_model_id=models+"/"+caller_id
+                open(default_model_path, 'a').close()
                 
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "% default_model_path +"Renamed model path: %s " % renamed_model_id+ "\n")
                 sys.stdout.flush()
@@ -157,6 +159,10 @@ def CheckVoiceID(File):
         args = (checking_bin,"1")
         model_id=models+"/"+caller_id
         #real command: args= (checking_bin, File, model_id)
+        if not os.path.isfile(renamed_model_id):
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
+            sys.stdout.flush()
+            return
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
             result = popen.stdout.read()# to wait that the analysis is complete
