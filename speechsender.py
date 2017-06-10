@@ -136,18 +136,18 @@ def RegisterUser(File):
 
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Registering bin path: %s "% registering_bin + "\n")
         sys.stdout.flush()
-        #args= (registering_bin)
-        #subprocess.call([registering_bin])
-        os.system(registering_bin)
         try:
-                result = popen.stdout.read()# to wait that the analysis is complete
-        except:
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
+                os.system(registering_bin)
+                #args= (registering_bin)
+                #subprocess.call([registering_bin])
+                #result = popen.stdout.read()# to wait that the analysis is complete
+        except as e:
+                
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Exception occured not recognized ..."+str(e) + "\" " + "\n")
                 sys.stdout.flush()
         if result:
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
-                sys.stdout.flush()
-                
+                sys.stdout.flush() 
 
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "%  models +"Renamed model path: %s " % stored_models_dir+ "\n")
                 sys.stdout.flush()
