@@ -10,6 +10,7 @@ dialplan:
 	cp "./extensions_custom.conf" "/etc/asterisk/"
 reboot:
 	asterisk -rx "core restart now"
+logs:
 	asterisk -rvvvvv
 clean:
 	rm $(EXEC)
