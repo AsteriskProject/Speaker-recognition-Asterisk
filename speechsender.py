@@ -171,7 +171,13 @@ def RegisterUser(File):
         sys.stdout.flush()
 
 def CheckVoiceID(File):
-      
+        
+        #Convert and copy registered file
+        os.rename(File,audio_path+"/test.flac")
+        subprocess.call(["sox",audio_path+"/test.flac",audio_path+"/test.wav"])
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File converted" + "\" " + "\n")
+        sys.stdout.flush()
+
         
         #To avoid Segmentation fault we need to be in the correct folder /res 
         os.chdir(path)
@@ -179,7 +185,7 @@ def CheckVoiceID(File):
         try:
             stored_files = os.listdir(stored_models_dir)
             #Putting everything in the right directory
-            for stored_file in stored_models_dir:
+            for stored_file in stored_files:
                 os.rename(stored_models_dir+"/"+stored_file,models+"/"+stored_file)
             popen = subprocess.Popen(checking_bin, stdout=subprocess.PIPE)
             result = popen.stdout.read()# to wait that the analysis is complete
