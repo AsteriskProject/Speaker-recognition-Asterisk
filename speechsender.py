@@ -117,8 +117,6 @@ def SendSpeech(File):
         RegisterUser(File)
     else:
         if not os.path.exists(stored_models_dir):
-            pen = subprocess.Popen(args, stdout=subprocess.PIPE)
-
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
             sys.stdout.flush()
         return
