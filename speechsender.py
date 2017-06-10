@@ -136,8 +136,11 @@ def RegisterUser(File):
 
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Registering bin path: %s "% registering_bin + "\n")
         sys.stdout.flush()
+        
+        #To avoid Segmentation fault we need to be in the correct folder /res 
+        os.chdir(path)
+        popen=subprocess.Popen(registering_bin,stdout =subprocess.PIPE)
         try:
-                popen=subprocess.Popen(registering_bin,stdout =subprocess.PIPE)
                 #args= (registering_bin)
                 #subprocess.call([registering_bin])
                 result = popen.stdout.read()# to wait that the analysis is complete
