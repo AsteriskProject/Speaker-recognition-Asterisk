@@ -119,7 +119,7 @@ def SendSpeech(File):
         if not os.path.exists(stored_models_dir):
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
             sys.stdout.flush()
-        return
+            return
         CheckVoiceID(File)
                 
 
@@ -171,7 +171,9 @@ def RegisterUser(File):
         sys.stdout.flush()
 
 def CheckVoiceID(File):
-        
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our checking function " + "\n")
+        sys.stdout.flush()
+
         #Convert and copy registered file
         os.rename(File,audio_path+"/test.flac")
         subprocess.call(["sox",audio_path+"/test.flac",audio_path+"/test.wav"])
