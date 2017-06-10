@@ -116,7 +116,7 @@ def SendSpeech(File):
     if mode == "register":
         RegisterUser(File)
     else:
-        i.f not os.path.exists(stored_models_dir):
+        if not os.path.exists(stored_models_dir):
             pen = subprocess.Popen(args, stdout=subprocess.PIPE)
 
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
@@ -136,8 +136,10 @@ def RegisterUser(File):
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File converted" + "\" " + "\n")
         sys.stdout.flush()
 
-        args= (registering_bin)
-        popen = subprocess.call([registering_bin]) 
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Registering bin path: %s "% registering_bin + "\n")
+        sys.stdout.flush()
+        #args= (registering_bin)
+        subprocess.call([registering_bin]) 
         try:
                 result = popen.stdout.read()# to wait that the analysis is complete
         except:
