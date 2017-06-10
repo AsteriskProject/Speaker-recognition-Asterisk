@@ -186,7 +186,7 @@ def CheckVoiceID(File):
 
         try:
             stored_files = os.listdir(stored_models_dir)
-            #Putting everything in the right directory
+            #Putting everything needed in the Model directory to launch test.elf
             for stored_file in stored_files:
                 os.rename(stored_models_dir+"/"+stored_file,models+"/"+stored_file)
             popen = subprocess.Popen(checking_bin, stdout=subprocess.PIPE)
@@ -203,7 +203,10 @@ def CheckVoiceID(File):
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "It seems that we have the wrong speaker: Result %s "% str(result) + "\" " + "\n")
             sys.stdout.flush()
 
-
+        #Putting everything back in the directory of the caller
+        modele_files = os.listdir(models)
+        for modele_file in modele_files:
+            os.rename(models+"/"+modele_file,stored_models_dir+"/"+modele_file)
 
 
 
