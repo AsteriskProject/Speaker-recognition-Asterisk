@@ -139,30 +139,29 @@ def RegisterUser(File):
         
         #To avoid Segmentation fault we need to be in the correct folder /res 
         os.chdir(path)
-        popen=subprocess.Popen(registering_bin,stdout =subprocess.PIPE)
         try:
+                popen=subprocess.Popen(registering_bin, stdout=subprocess.PIPE)
                 #args= (registering_bin)
                 #subprocess.call([registering_bin])
                 result = popen.stdout.read()# to wait that the analysis is complete
         except Exception as e:
-                traceback.print_exc() 
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Exception occured not recognized ...%s"% str(e) + "\" " + "\n")
                 sys.stdout.flush()
-        if result:
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
-                sys.stdout.flush() 
+        
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
+        sys.stdout.flush() 
 
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "%  models +"Renamed model path: %s " % stored_models_dir+ "\n")
-                sys.stdout.flush()
-                os.mkdir(stored_models_dir)
-                os.rename(models+"/*",stored_models_dir)
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "%  models +"Renamed model path: %s " % stored_models_dir+ "\n")
+        sys.stdout.flush()
+        os.mkdir(stored_models_dir)
+        os.rename(models+"/*",stored_models_dir)
                 
-                sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
-                sys.stdout.flush()
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
-                sys.stdout.flush()
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
-                sys.stdout.flush()
+        sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
+        sys.stdout.flush()
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
+        sys.stdout.flush()
+        sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
+        sys.stdout.flush()
 
 def CheckVoiceID(File):
         args = (checking_bin,"1")
