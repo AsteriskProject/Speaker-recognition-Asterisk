@@ -153,9 +153,13 @@ def RegisterUser(File):
 
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "%  models +"Renamed model path: %s " % stored_models_dir+ "\n")
         sys.stdout.flush()
-        os.mkdir(stored_models_dir)
-        os.rename(models+"/*",stored_models_dir)
-                
+       
+        try:
+            os.mkdir(stored_models_dir)
+            os.rename(models+"/*",stored_models_dir)
+        except OSError:
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File already existing" + "\" " + "\n")
+            sys.stdout.flush() 
         sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
         sys.stdout.flush()
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
