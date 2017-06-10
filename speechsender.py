@@ -31,7 +31,8 @@ path="/res"
 registering_bin=path+"/enroll.elf"
 checking_bin=path+"/test.elf"
 models=path+"/ASV_resources/Models"
-audio_path=path+"/ASV_resources/Audio/Test.flac"
+audio_path=path+"/ASV_resources/Audio"
+test_audio_path=path+"/ASV_resources/Audio"
 stored_models_dir=path+"/ID_Models"+"/"+caller_id
 
 
@@ -43,7 +44,7 @@ stored_models_dir=path+"/ID_Models"+"/"+caller_id
 
 silence=True
 env = {}
-RawRate=16000
+RawRate=8000
 chunk=1024
 
 #http://en.wikipedia.org/wiki/Vocal_range
@@ -126,9 +127,10 @@ def RegisterUser(File):
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our registering function " + "\n")
         sys.stdout.flush()
         flac=open(File,"rb").read()
-        
-        #Rename and copy registered file
+
+        #Convert and copy registered file
         os.rename(File,audio_path)
+        subprocess.call(["sox",audio_path+"/enroll.flac",audio_path+"/enroll.wav"])
         args= (registering_bin)
         popen = subprocess.Popen(args, stdout=subprocess.PIPE) 
         try:
