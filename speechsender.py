@@ -18,14 +18,6 @@ import subprocess
 Lang="en-US"
 
 
-#Places where to find binaries and directories
-path="/res"
-registering_bin=path+"/enroll.elf"
-checking_bin=path+"/test.elf"
-models=path+"/ASV_resources/Models"
-audio_path=path+"/ASV_resources/Audio/Test.flac"
-stored_models_dir=path+"/ID_Models"+"/"+caller_id
-
 
 #register or check modes
 #they are given as input
@@ -33,6 +25,14 @@ mode = sys.argv[1]
 
 #Identifier extension will be added like a caller id
 caller_id = sys.argv[2]
+
+#Places where to find binaries and directories
+path="/res"
+registering_bin=path+"/enroll.elf"
+checking_bin=path+"/test.elf"
+models=path+"/ASV_resources/Models"
+audio_path=path+"/ASV_resources/Audio/Test.flac"
+stored_models_dir=path+"/ID_Models"+"/"+caller_id
 
 
 #TODO
