@@ -137,7 +137,8 @@ def RegisterUser(File):
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Registering bin path: %s "% registering_bin + "\n")
         sys.stdout.flush()
         #args= (registering_bin)
-        subprocess.call([registering_bin]) 
+        #subprocess.call([registering_bin])
+        os.system(registering_bin)
         try:
                 result = popen.stdout.read()# to wait that the analysis is complete
         except:
