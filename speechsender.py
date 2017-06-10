@@ -171,19 +171,31 @@ def RegisterUser(File):
         sys.stdout.flush()
 
 def CheckVoiceID(File):
-        args = (checking_bin,"1")
-        #real command: args= (checking_bin, File, model_id)
-        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+      
+        
+        #To avoid Segmentation fault we need to be in the correct folder /res 
+        os.chdir(path)
+
         try:
+            stored_files = os.listdir(stored_models_dir)
+            #Putting everything in the right directory
+            for stored_file in stored_models_dir:
+                os.rename(stored_models_dir+"/"+stored_file,models+"/"+stored_file)
+            popen = subprocess.Popen(checking_bin, stdout=subprocess.PIPE)
             result = popen.stdout.read()# to wait that the analysis is complete
         except:
-            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized ..." + "\" " + "\n")
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized or error during process ..." + "\" " + "\n")
             sys.stdout.flush()
-        if str(result) == "1": 
+        if str(result) == "1.0": 
             sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
             sys.stdout.flush()
-            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "%s \n"% caller_id)
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "RESULT : %s \n"% str(result))
             sys.stdout.flush()
+        else:
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "It seems that we have the wrong speaker: Result %s "% str(result) + "\" " + "\n")
+            sys.stdout.flush()
+
+
 
 
 
