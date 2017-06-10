@@ -18,13 +18,14 @@ import subprocess
 Lang="en-US"
 
 
-#NOw for google speech V2
-url='https://www.google.com/speech-api/v2/recognize?output=json&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&lang='+Lang
+#Places where to find binaries and directories
+path="/res"
+registering_bin=path+"/enroll.elf"
+checking_bin=path+"/test.elf"
+models=path+"/ASV_resources/Models"
+audio_path=path+"/ASV_resources/Audio/Test.flac"
+stored_models_dir=path+"/ID_Models"+"/"+caller_id
 
-#Places where to find binaries
-binaries_path="/home/roothome/Speaker-recognition-Asterisk"
-registering_bin=binaries_path+"/binarytest.out"
-checking_bin=binaries_path+"/binarytest.out"
 
 #register or check modes
 #they are given as input
@@ -32,13 +33,6 @@ mode = sys.argv[1]
 
 #Identifier extension will be added like a caller id
 caller_id = sys.argv[2]
-
-#General path
-path="/res"
-models=path+"/models"
-default_name_model="/model"
-default_model_path=binaries_path+default_name_model
-renamed_model_id=models+"/"+caller_id
 
 
 #TODO
@@ -49,7 +43,7 @@ renamed_model_id=models+"/"+caller_id
 
 silence=True
 env = {}
-RawRate=8000
+RawRate=16000
 chunk=1024
 
 #http://en.wikipedia.org/wiki/Vocal_range
@@ -117,21 +111,26 @@ def SendSpeech(File):
     sys.stdout.flush()
     sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Mode is : %s"% mode + "callerid is : %s"% caller_id + "\n")
     sys.stdout.flush()
+    
     if mode == "register":
         RegisterUser(File)
     else:
+        if not os.path.exists(stored_models_dir):
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
+            sys.stdout.flush()
+        return
         CheckVoiceID(File)
                 
 
 def RegisterUser(File):
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our registering function " + "\n")
         sys.stdout.flush()
-        #to test
-        args = (registering_bin,"Salut Fernando")
-        #flac=open(File,"rb").read()
-        #os.remove(File)
-        #real command: args= (registering_bin, File)
-        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+        flac=open(File,"rb").read()
+        
+        #Rename and copy registered file
+        os.rename(File,audio_path)
+        args= (registering_bin)
+        popen = subprocess.Popen(args, stdout=subprocess.PIPE) 
         try:
                 result = popen.stdout.read()# to wait that the analysis is complete
         except:
@@ -140,13 +139,12 @@ def RegisterUser(File):
         if result:
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
                 sys.stdout.flush()
-                #TODO change path model in function of the teacher binary
-                open(default_model_path, 'a').close()
                 
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "% default_model_path +"Renamed model path: %s " % renamed_model_id+ "\n")
-                sys.stdout.flush()
 
-                os.rename(default_model_path,renamed_model_id)
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "default model path: %s "%  models +"Renamed model path: %s " % stored_models_dir+ "\n")
+                sys.stdout.flush()
+                os.mkdir(stored_models_dir)
+                os.rename(models+"/*",stored_models_dir)
                 
                 sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
                 sys.stdout.flush()
@@ -157,12 +155,7 @@ def RegisterUser(File):
 
 def CheckVoiceID(File):
         args = (checking_bin,"1")
-        model_id=models+"/"+caller_id
         #real command: args= (checking_bin, File, model_id)
-        if not os.path.isfile(renamed_model_id):
-            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Not registered ..." + "\" " + "\n")
-            sys.stdout.flush()
-            return
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         try:
             result = popen.stdout.read()# to wait that the analysis is complete
