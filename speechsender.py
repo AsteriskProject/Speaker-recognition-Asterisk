@@ -141,9 +141,9 @@ def RegisterUser(File):
                 #args= (registering_bin)
                 #subprocess.call([registering_bin])
                 #result = popen.stdout.read()# to wait that the analysis is complete
-        except as e:
+        except Exception as e:
                 
-                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Exception occured not recognized ..."+str(e) + "\" " + "\n")
+                sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Exception occured not recognized ...%s"% str(e) + "\" " + "\n")
                 sys.stdout.flush()
         if result:
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Entering our result part in registering function " + "\n")
