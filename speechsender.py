@@ -137,12 +137,12 @@ def RegisterUser(File):
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +"Registering bin path: %s "% registering_bin + "\n")
         sys.stdout.flush()
         try:
-                os.system(registering_bin)
+                popen=subprocess.Popen(registering_bin,stdout =subprocess.PIPE)
                 #args= (registering_bin)
                 #subprocess.call([registering_bin])
-                #result = popen.stdout.read()# to wait that the analysis is complete
+                result = popen.stdout.read()# to wait that the analysis is complete
         except Exception as e:
-                
+                traceback.print_exc() 
                 sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Exception occured not recognized ...%s"% str(e) + "\" " + "\n")
                 sys.stdout.flush()
         if result:
