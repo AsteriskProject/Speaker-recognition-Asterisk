@@ -197,7 +197,7 @@ def CheckVoiceID(File):
         if str(result) == "1.0": 
             sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
             sys.stdout.flush()
-            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "RESULT : %s \n"% str(result))
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "RESULT SUCCESSFULL : %s \n"% str(result))
             sys.stdout.flush()
         else:
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "It seems that we have the wrong speaker: Result %s "% str(result) + "\" " + "\n")
