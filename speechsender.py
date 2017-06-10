@@ -194,7 +194,7 @@ def CheckVoiceID(File):
         except:
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "speech not recognized or error during process ..." + "\" " + "\n")
             sys.stdout.flush()
-        if str(result) == "1.0": 
+        if str(result) in "1.0": 
             sys.stdout.write('SET VARIABLE CallerFound "%s"\n'% caller_id)
             sys.stdout.flush()
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" "RESULT SUCCESSFULL : %s \n"% str(result))
