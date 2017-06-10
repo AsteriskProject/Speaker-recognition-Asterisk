@@ -156,7 +156,10 @@ def RegisterUser(File):
        
         try:
             os.mkdir(stored_models_dir)
-            os.rename(models+"/*",stored_models_dir)
+            modele_files = os.listdir(models)
+            #Putting everything in the right directory
+            for modele_file in modele_files:
+                os.rename(models+"/"+modele_file,stored_models_dir+"/"+modele_file)
         except OSError:
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File already existing" + "\" " + "\n")
             sys.stdout.flush() 
