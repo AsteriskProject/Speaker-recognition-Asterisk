@@ -129,7 +129,7 @@ def RegisterUser(File):
         flac=open(File,"rb").read()
 
         #Convert and copy registered file
-        os.rename(File,audio_path)
+        os.rename(File,audio_path+"/enroll.flac")
         subprocess.call(["sox",audio_path+"/enroll.flac",audio_path+"/enroll.wav"])
         args= (registering_bin)
         popen = subprocess.Popen(args, stdout=subprocess.PIPE) 
