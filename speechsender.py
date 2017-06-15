@@ -105,6 +105,10 @@ def SendSpeech(File):
     sys.stdout.flush()
     
     if mode == "register":
+        if os.path.exists(stored_models_dir):
+            sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Already registered ..." + "\" " + "\n")
+            sys.stdout.flush()
+            return
         RegisterUser(File)
     else:
         if not os.path.exists(stored_models_dir):
