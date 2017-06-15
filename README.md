@@ -60,6 +60,12 @@ sudo make reboot
 sudo make logs
 ```
 Extensions for IVR 777 and 99 and users were done using FreePBx so included in this directory the output of these automatic generation in iax_additional.con and extensions_additional.conf  
+# How to use it
+
+Create an extension for a new account
+Call 777 and type 1 to register and 2 to login
+When you are logged in you can call the person you want to call by his extension number
+
 # Usefull Links
 
 * Asterisk: 
