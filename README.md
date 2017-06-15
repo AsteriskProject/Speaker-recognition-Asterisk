@@ -48,9 +48,17 @@ Directory needed in /res to launch the application
 │       └── w.bin  
 └── test.elf  
 
-The speaker binary is not present in this repository  
+The speaker binary is not present in this repository.
 
+In the directory where you have imported this project execute the following commands :
 
+```bash
+sudo make copy #Will copy the binary and will add execute right
+sudo make dialplan #Will create the extensions calling our program
+#Extra commands for rebooting and displaying logs from Asterisk
+sudo make reboot
+sudo make logs
+```
 
 # Usefull Links
 
