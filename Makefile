@@ -1,5 +1,5 @@
 CC=gcc
-EXEC=binarytest.out
+#EXEC=binarytest.out used to test before we had the real binary
 NAMEPROGPYTHON=speechsender.py
 PATH_AGI=/var/lib/asterisk/agi-bin
 
@@ -12,7 +12,7 @@ reboot:
 	asterisk -rx "core restart now"
 logs:
 	asterisk -rvvvvv
-clean:
-	rm $(EXEC)
+#clean:
+#	rm $(EXEC)
 
 
