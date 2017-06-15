@@ -60,6 +60,15 @@ sudo make reboot
 sudo make logs
 ```
 Extensions for IVR 777 and 99 and users were done using FreePBx so included in this directory the output of these automatic generation in iax_additional.con and extensions_additional.conf  
+
+We used also Google text to speech in our voice message. You can configure it by running:
+```bash
+apt-get install perl libwww-perl sox mpg123
+cd /var/lib/asterisk/agi-bin
+wget https://raw.github.com/zaf/asterisk-googletts/master/googletts.agi
+chmod +x googletts.agi
+```
+
 # How to use it
 
 Create an extension for a new account
