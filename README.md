@@ -1,4 +1,4 @@
-# -Speaker-recognition-Asterisk-
+# Speaker-recognition-Asterisk Project Eurecom
  Speaker recognition for Asterisk 
  
 # Get Started
