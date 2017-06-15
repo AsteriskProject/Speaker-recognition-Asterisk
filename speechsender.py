@@ -14,8 +14,6 @@ import os
 import subprocess
 
 
-#For for English Speech Recognizer
-Lang="en-US"
 
 
 
@@ -36,23 +34,16 @@ test_audio_path=path+"/ASV_resources/Audio"
 stored_models_dir=path+"/ID_Models"+"/"+caller_id
 
 
-#TODO
-#sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "Hello Waiting For Speech ..."+os.getcwd() + str(sys.argv[1]) + "\" " + "\n")
-#path="/res/"
-#os.rename(path+"model",path+"model"+ str(sys.argv[1]))
-
 
 silence=True
 env = {}
 RawRate=8000
 chunk=1024
 
-#http://en.wikipedia.org/wiki/Vocal_range
 #Assuming Vocal Range Frequency upper than 75 Hz
 VocalRange = 75.0
 
 
-#cd, FileNameTmp    = mkstemp('TmpSpeechFile.flac')
 
 #Assuming Energy threshold upper than 15 dB
 Threshold = 15
@@ -163,6 +154,12 @@ def RegisterUser(File):
         except OSError:
             sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File already existing" + "\" " + "\n")
             sys.stdout.flush() 
+        
+        #Cleaning directory Audio: 
+        os.remove(File,audio_path+"/enroll.flac")
+        os.remove(File,audio_path+"/enroll.wav")
+
+        #Writing some logs in Asterisk log console
         sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
         sys.stdout.flush()
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" +'You have been assigned number : "%s"\n'% caller_id)
@@ -207,6 +204,10 @@ def CheckVoiceID(File):
         modele_files = os.listdir(models)
         for modele_file in modele_files:
             os.rename(models+"/"+modele_file,stored_models_dir+"/"+modele_file)
+        
+        #Cleaning directory Audio: 
+        os.remove(File,audio_path+"/test.flac")
+        os.remove(File,audio_path+"/test.wav")
 
 
 
