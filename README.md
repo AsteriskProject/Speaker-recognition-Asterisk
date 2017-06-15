@@ -1,4 +1,4 @@
-# -Speaker-recognition-Asterisk-
+# Speaker-recognition-Asterisk Project Eurecom
  Speaker recognition for Asterisk 
  
 # Get Started
@@ -59,6 +59,7 @@ sudo make dialplan #Will create the extensions calling our program
 sudo make reboot
 sudo make logs
 ```
+Extensions for IVR and users were done using FreePBx so included in this directory the output of these automatic generation in iax_additional.con and extensions_additional.conf  
 
 # Usefull Links
 
