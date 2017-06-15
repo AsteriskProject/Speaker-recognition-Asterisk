@@ -26,29 +26,29 @@ Download and install audiolab from:
 http://pypi.python.org/pypi/scikits.audiolab/  
 
 Directory needed in /res to launch the application 
-.
-├── ASV_resources
-│   ├── Audio
-│   ├── Models
-│   ├── Params
-│   │   ├── dctbases.mat
-│   │   ├── filterbank.mat
-│   │   └── params.mat
-│   └── UBM
-│       └── ubm.mat
-├── enroll.elf
-├── ID_Models
-│   ├── 596
-│   │   ├── mu.bin
-│   │   ├── sigma.bin
-│   │   └── w.bin
-│   └── 668
-│       ├── mu.bin
-│       ├── sigma.bin
-│       └── w.bin
-└── test.elf
+.  
+├── ASV_resources  
+│   ├── Audio  
+│   ├── Models  
+│   ├── Params  
+│   │   ├── dctbases.mat  
+│   │   ├── filterbank.mat  
+│   │   └── params.mat  
+│   └── UBM  
+│       └── ubm.mat  
+├── enroll.elf  
+├── ID_Models  
+│   ├── 596  
+│   │   ├── mu.bin  
+│   │   ├── sigma.bin  
+│   │   └── w.bin  
+│   └── 668  
+│       ├── mu.bin  
+│       ├── sigma.bin  
+│       └── w.bin  
+└── test.elf  
 
-The speaker binary is not present in this repository
+The speaker binary is not present in this repository  
 
 
 
