@@ -48,10 +48,10 @@ VocalRange = 75.0
 #Assuming Energy threshold upper than 15 dB
 Threshold = 15
 
-#10 seconds x 16000 samples/second x ( 16 bits / 8bits/byte ) = 160000 bytes
-#160000/1024 = +/- 157
-#157*1024 = 160768
-TimeoutSignal = 160768
+#5 seconds x 16000 samples/second x ( 16 bits / 8bits/byte ) = 80000 bytes
+#80000/1024 = +/- 78
+#78*1024 = 79872
+TimeoutSignal = 79872
 
 #then 1 second x 16000 = 16000
 #16000/1024 = 15,625 round to 16
