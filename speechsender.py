@@ -125,7 +125,7 @@ def RegisterUser(File):
 
         #Convert and copy registered file
         os.rename(File,audio_path+"/enroll.flac")
-        subprocess.call(["sox",audio_path+"/enroll.flac",audio_path+"/enroll.wav"])
+        subprocess.call(["sox",audio_path+"/enroll.flac","-r 16000",audio_path+"/enroll.wav"])
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File converted" + "\" " + "\n")
         sys.stdout.flush()
 
@@ -177,7 +177,7 @@ def CheckVoiceID(File):
 
         #Convert and copy registered file
         os.rename(File,audio_path+"/test.flac")
-        subprocess.call(["sox",audio_path+"/test.flac",audio_path+"/test.wav"])
+        subprocess.call(["sox",audio_path+"/test.flac","-r 16000",audio_path+"/test.wav"])
         sys.stdout.write("EXEC " + "\"" + "NOOP" + "\" \"" + "File converted" + "\" " + "\n")
         sys.stdout.flush()
 
