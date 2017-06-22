@@ -160,8 +160,8 @@ def RegisterUser(File):
             sys.stdout.flush() 
         
         #Cleaning directory Audio: 
-        #os.remove(audio_path+"/enroll.flac")
-        #os.remove(audio_path+"/enroll.wav")
+        os.remove(audio_path+"/enroll.flac")
+        os.remove(audio_path+"/enroll.wav")
 
         #Writing some logs in Asterisk log console
         sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
@@ -210,8 +210,8 @@ def CheckVoiceID(File):
             os.rename(models+"/"+modele_file,stored_models_dir+"/"+modele_file)
         
         #Cleaning directory Audio: 
-        #os.remove(audio_path+"/test.flac")
-        #os.remove(audio_path+"/test.wav")
+        os.remove(audio_path+"/test.flac")
+        os.remove(audio_path+"/test.wav")
 
 
 
