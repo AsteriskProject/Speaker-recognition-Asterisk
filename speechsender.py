@@ -48,10 +48,10 @@ VocalRange = 75.0
 #Assuming Energy threshold upper than 15 dB
 Threshold = 15
 
-#5 seconds x 16000 samples/second x ( 16 bits / 8bits/byte ) = 80000 bytes
-#80000/1024 = +/- 78
-#78*1024 = 79872
-TimeoutSignal = 79872
+#10 seconds x 16000 samples/second x ( 16 bits / 8bits/byte ) = 160000 bytes
+#160000/1024 = +/- 157
+#157*1024 = 160768
+TimeoutSignal = 160768
 
 #then 1 second x 16000 = 16000
 #16000/1024 = 15,625 round to 16
@@ -161,7 +161,7 @@ def RegisterUser(File):
         
         #Cleaning directory Audio: 
         os.remove(audio_path+"/enroll.flac")
-        os.remove(audio_path+"/enroll.wav")
+        #os.remove(audio_path+"/enroll.wav")
 
         #Writing some logs in Asterisk log console
         sys.stdout.write('SET VARIABLE NumberAssigned "%s"\n'% caller_id)
@@ -211,7 +211,7 @@ def CheckVoiceID(File):
         
         #Cleaning directory Audio: 
         os.remove(audio_path+"/test.flac")
-        os.remove(audio_path+"/test.wav")
+        #os.remove(audio_path+"/test.wav")
 
 
 
