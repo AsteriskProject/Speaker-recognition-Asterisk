@@ -304,8 +304,8 @@ sys.stdout.flush()
 
 
 
-PlayStream("beep");
-sys.stdout.flush()
+#PlayStream("beep")
+#sys.stdout.flush()
 
 
 while silence:
